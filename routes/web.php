@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\TttController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
     $value = $_GET['pagePraram'];
@@ -42,6 +44,8 @@ Route::get('/page2', [PageController::class, 'pb']);
 
 Route::get('/content', [TttController::class, 'tt']);
 
-Route::get('/product', [ProductController::class, 'show']);
+// Route::get('/products/{id}', [ProductController::class, 'show']);
 
+Route::resource('products', ProductController::class);
+Route::resource('orders', OrderController::class);
 
