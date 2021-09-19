@@ -2058,9 +2058,16 @@ module.exports = {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _cart__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cart */ "./resources/js/cart.js");
+
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+window.initAddCart = _cart__WEBPACK_IMPORTED_MODULE_0__.initAddCart;
 
 /***/ }),
 
@@ -2092,6 +2099,42 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/cart.js":
+/*!******************************!*\
+  !*** ./resources/js/cart.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "initAddCart": () => (/* binding */ initAddCart)
+/* harmony export */ });
+function initAddCart() {
+  var cartNumberDom = document.querySelector('#cartNumber');
+
+  if (cartNumberDom) {
+    var submitBtn = document.querySelector('#cartBtn');
+
+    if (submitBtn) {
+      submitBtn.addEventListener('click', function () {
+        // 當下數量
+        var currentNumber = parseInt(cartNumberDom.value) || 0; // 先前的數量
+
+        var oldNumber = parseInt(Cookies.get('cartNumber')) || 0; //最終數量
+
+        var finalNumber = currentNumber + oldNumber;
+        Cookies.set('cartNumber', finalNumber);
+        alert("\u7576\u4E0B\u6578\u91CF ".concat(currentNumber, "\uFF0CCookies \u5167\u6578\u91CF ").concat(oldNumber, "\uFF0C\u6700\u7D42\u6578\u91CF\uFF1B ").concat(finalNumber));
+      });
+    }
+  }
+}
+
+
 
 /***/ }),
 
@@ -19587,6 +19630,18 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	

@@ -4,7 +4,6 @@
         <title>這是標題</title>
         @include("layout.meta")
         <!-- Fonts -->
-        
         @include("layout.css")
 
     </head>
@@ -17,12 +16,12 @@
         
         @include("layout.footer")
         @include("layout.js")
-        <script>
+        <!-- <script> -->
             
-            @section('inline_js')
-                console.log('layout js');
-            
-            @show
-        </script>
+        @section('inline_js')
+            console.log('layout js');
+        
+        @show
+        <!-- </script> -->
     </body>
 </html>
