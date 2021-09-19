@@ -23,7 +23,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
-        echo 'store';
+        return redirect()->route('products.index');
+
     }
     
     function show($id, Request $request){
@@ -70,15 +71,26 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
-        echo 'update';
+        
+        $index = $id - 1;
+        $productList = $this -> getProducts();
+        // gate 擋住都不能過
+        if($index < 0 || $index > count($productList) -1){
+            abort(404);
+        }
+
+        $product = $productList[$index];
+
+        return redirect()->route('products.edit', [
+            "product" => $product
+        ]);
     }
 
 
     public function destroy($id)
     {
         //
-        echo 'destroy';
+        return redirect()->route('products.index');
     }
 
     private function getProducts(){

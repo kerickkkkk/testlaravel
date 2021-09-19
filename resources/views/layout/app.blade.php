@@ -14,7 +14,7 @@
             <!-- 內容用 配 section -->
             @yield('content')
         </div>
-
+        
         @include("layout.footer")
         @include("layout.js")
         <script>
