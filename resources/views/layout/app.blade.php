@@ -16,12 +16,9 @@
         
         @include("layout.footer")
         @include("layout.js")
-        <!-- <script> -->
             
         @section('inline_js')
-            console.log('layout js');
         
         @show
-        <!-- </script> -->
     </body>
 </html>

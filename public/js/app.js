@@ -2113,7 +2113,47 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initAddCart": () => (/* binding */ initAddCart)
 /* harmony export */ });
-function initAddCart() {
+// function initAddToCart(){
+//   const cartNumberDom = document.querySelector('#cartNumber');
+//   if(cartNumberDom){
+//     const submitBtn = document.querySelector('#cartBtn');
+//     if(submitBtn){
+//         submitBtn.addEventListener('click',function(){
+//             // 當下數量
+//             let currentNumber = parseInt(cartNumberDom.value) || 0;
+//             // 先前的數量
+//             let oldNumber = parseInt(Cookies.get('cartNumber')) || 0;
+//             //最終數量
+//             let finalNumber = currentNumber + oldNumber;
+//             Cookies.set('cartNumber', finalNumber);
+//             alert(`當下數量 ${currentNumber}，Cookies 內數量 ${oldNumber}，最終數量； ${finalNumber}`)
+//         })
+//     }
+//   }
+// }
+function setCartQuantity(cart) {
+  Cookies.set('cart', JSON.stringify(cart));
+  console.log('cartNumber', Cookies.get('cart'));
+}
+
+function addProductToCart(productId, quantity) {
+  var cart = getCart();
+  var currentQuantity = parseInt(cart[productId]) || 0;
+  var addQuantity = parseInt(quantity) || 0;
+  cart[productId] = currentQuantity + addQuantity;
+  setCartQuantity(cart);
+} // 取得購物車
+
+
+function getCart() {
+  return Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : {};
+}
+
+function initCart() {
+  getCart();
+}
+
+function initAddCart(productId) {
   var cartNumberDom = document.querySelector('#cartNumber');
 
   if (cartNumberDom) {
@@ -2121,14 +2161,10 @@ function initAddCart() {
 
     if (submitBtn) {
       submitBtn.addEventListener('click', function () {
-        // 當下數量
-        var currentNumber = parseInt(cartNumberDom.value) || 0; // 先前的數量
+        initCart(); // 當下數量
 
-        var oldNumber = parseInt(Cookies.get('cartNumber')) || 0; //最終數量
-
-        var finalNumber = currentNumber + oldNumber;
-        Cookies.set('cartNumber', finalNumber);
-        alert("\u7576\u4E0B\u6578\u91CF ".concat(currentNumber, "\uFF0CCookies \u5167\u6578\u91CF ").concat(oldNumber, "\uFF0C\u6700\u7D42\u6578\u91CF\uFF1B ").concat(finalNumber));
+        var currentNumber = parseInt(cartNumberDom.value) || 0;
+        addProductToCart(productId, currentNumber);
       });
     }
   }

@@ -20,6 +20,9 @@
 @section('inline_js')
     @parent
     <script>
-        initAddCart();
+        const productId = {{ $productList[$index]['id']  }};
+        initAddCart(productId);
+
+        
     </script>
 @endsection
