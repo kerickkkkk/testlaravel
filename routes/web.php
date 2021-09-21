@@ -17,6 +17,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\TttController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CartController;
 
 Route::get('/', function () {
     $value = $_GET['pagePraram'];
@@ -48,4 +49,5 @@ Route::get('/content', [TttController::class, 'tt']);
 
 Route::resource('products', ProductController::class);
 Route::resource('orders', OrderController::class);
+Route::resource('cart', CartController::class);
 
